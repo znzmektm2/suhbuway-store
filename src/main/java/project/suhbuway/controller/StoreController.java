@@ -43,12 +43,12 @@ public class StoreController {
 	/**
 	 * 아이디 중복확인 Ajax
 	 */
-//	@RequestMapping("/idcheckAjax")
-//	@ResponseBody  ㅓ     
-//	public String idCheckAjax(HttpServletRequest request) {
-//		//System.out.println("컨트롤러 id체크 : " + request.getParameter("userId") );
-//		return service.idcheck(request.getParameter("storeId"));
-//	}
+	@RequestMapping("/idcheckAjax")
+	@ResponseBody   
+	public String idCheckAjax(HttpServletRequest request) {
+		//System.out.println("컨트롤러 id체크 : " + request.getParameter("storeId") );
+		return service.idcheck(request.getParameter("storeId"));
+	}
 	
 	/**
 	 *  회원가입하기

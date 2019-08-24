@@ -64,8 +64,6 @@
 </header>
 <script>
 $(document).ready(function(){
-	gnb();
-	menuActive();
 	if($('.sub_header').length >0){
 		bodyScroll();//body scroll
 	}

@@ -42,7 +42,7 @@
 				alert("아이디 길이가 맞지 않습니다.");
 				return;
 			}
-			var storeId = $("#userId").val().trim();
+			var storeId = $("#storeId").val().trim();
 						
 			$.ajax({
 				type:"POST",
@@ -95,7 +95,7 @@
 	// 유효성 체크
 	function checkValid() {
    		var f = window.document.registerForm;
-   		console.log(f.userId.value)
+   		console.log(f.storeId.value)
 		if ( f.storeId.value == "") {
  		    alert( "아이디를 입력해 주세요." );
 			f.storeId.focus();
@@ -131,7 +131,7 @@
         	f.storeOwner.focus();
         	return false;
     	}
-    	//return true;
+    	return true;
 	}
 </script>
 </head>
@@ -162,13 +162,11 @@
 									<col width="*">
 								</colgroup>
 								<tbody>
-									<!-- ======여기부터====== -->
 									<tr>
 										<th scope="col">아이디<span class="ess"></span></th>
 										<td>
 											<span class="form_text" style="width:100%">
-												<input maxlength="20" name="storeId" id="storeId" placeholder="아이디를 입력해주세요" type="text" 
-												value="${userId}">
+												<input maxlength="20" name="storeId" id="storeId" placeholder="아이디를 입력해주세요" type="text" >
 											</span>
 											<input type="button" name="idCheck" id="idCheck" value="중복확인"><span id="idcheckspan"></span>
 										</td>
