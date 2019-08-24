@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<!-- 외부설정문서(properties파일) 가져오기 -->
+	<beans:bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<beans:property name="locations"><!-- setLocations()호출 -->
+			<beans:value>classpath:config/dbInfo.properties</beans:value>
+		</beans:property>
+	</beans:bean>
+
+	<!-- oracle 연결 -->
+	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		p:driverClassName="${driverName}" p:url="${url}" p:username="${userName}" p:password="${userPass}" p:maxActive="10" />
+
+	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<beans:property name="dataSource" ref="dataSource" />
+		<beans:property name="mapperLocations" value="classpath:mapper/*Mapper.xml" />
+		<beans:property name="typeAliasesPackage" value="project.suhbuway.dto" />
+		<beans:property name="configLocation" value="classpath:SqlMapConfig.xml" />
+	</beans:bean>
+
+	<!-- SqlSessionTemplate는 SqlSession의 구현 객체로서 SqlSession의 모든 기능을 가지고 있다. -->
+	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+		<beans:constructor-arg index="0" ref="sqlSessionFactory" />
+	</beans:bean>
+
+	<!-- TransactionManager를 등록 -->
+	<beans:bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="transactionManager">
+		<beans:property name="dataSource" ref="dataSource" />
+	</beans:bean>
+
+	<!-- transaction설정 옵션과 aop설정을 annotataion으로 변경 -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+</beans:beans>

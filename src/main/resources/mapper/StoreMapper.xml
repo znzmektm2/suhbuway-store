@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="storeMapper">
+	
+<sql id="storeColumn">
+	store_Id,store_Password,store_Name,store_Address,store_Phone,store_Owner,store_Sales
+</sql>
+<!-- 
+<resultMap type="member" id="memberSelectMap">
+  <id column="MEMBER_ID" property="id"/>
+  <result column="MEMBER_PASSWORD" property="password"/>
+  <result column="MEMBER_NAME" property="name"/>
+  <result column="MEMBER_EMAIL" property="email"/>
+</resultMap>
+ -->
+<!-- 전체 검색 -->
+<select id="selectAll" parameterType="string" resultType="store">
+	select <include refid="storeColumn"/>
+	from store
+</select>
+
+<!-- id에 대한 검색 -->
+<select id="selectStoreById" parameterType="string" resultType="store">
+	select <include refid="storeColumn"/>
+	from store
+	where store_ID=#{_parameter} 
+</select>
+
+<!-- 매장 회원 회원가입 -->
+<insert id="insertStore" parameterType="store">
+	insert into store(<include refid="storeColumn"/>)
+	values(#{storeId},#{storePassword},#{storeName},#{storeAddress},#{storePhone},#{storeOwner},0)
+</insert>
+
+<!-- ID중복체크 -->
+<select id="idcheck" resultType="int">
+	select count(*) from store where store_ID=#{_parameter} 
+</select>
+
+
+</mapper>	
