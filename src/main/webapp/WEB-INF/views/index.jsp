@@ -16,10 +16,20 @@
 		<div id="content">
 			<div class="inquiry_wrapper">
 				<h2 class="subTitle">Suhbuway 매장 전용 Site 입니다.</h2>
-				<h3 class="subTitle" style="color: red">
-				매장회원만 로그인 후 이용 가능합니다.</h3>
 		</div>
-		<!--// sub content e -->
+		
+		<sec:authorize access="isAnonymous()" >
+			<h2 class="subTitle" style="color: red">
+				매장회원만 로그인 후 이용 가능합니다.
+			</h2>
+		</sec:authorize>
+		<sec:authorize access="isAuthenticated()">
+			<sec:authorize access="hasRole('ROLE_STORE')">
+				<h2 class="subTitle" style="color: red">
+					인증이 완료되었습니다.					
+				</h2>
+			</sec:authorize>
+		</sec:authorize>
 	</div>
 </div>
 </body>
