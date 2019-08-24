@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <footer id="footer">
 	<div class="content">
-		<!-- util menu -->  
+		<!-- util menu -->   
 		<div class="util_menu">
 			<ul>
 				<li><a href="javascript:;">이용약관</a></li>
