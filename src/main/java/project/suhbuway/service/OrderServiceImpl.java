@@ -16,8 +16,8 @@ import project.suhbuway.dto.OrderItem;
 import project.suhbuway.dto.OrderList;
 import project.suhbuway.dto.Product;
 import project.suhbuway.dto.Store;
-import project.suhbuway.pojo.OrderInsertWrapper;
-import project.suhbuway.pojo.OrderListWrapper;
+import project.suhbuway.wrapper.OrderInsertWrapper;
+import project.suhbuway.wrapper.OrderListWrapper;
 
 @Service
 public class OrderServiceImpl implements OrderService {

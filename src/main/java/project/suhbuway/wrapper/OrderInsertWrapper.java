@@ -1,4 +1,4 @@
-package project.suhbuway.pojo;
+package project.suhbuway.wrapper;
 
 import lombok.Data;
 import project.suhbuway.dto.Product;

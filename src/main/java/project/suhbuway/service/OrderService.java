@@ -4,7 +4,7 @@ import java.util.List;
 
 import project.suhbuway.dto.OrderList;
 import project.suhbuway.dto.Store;
-import project.suhbuway.pojo.OrderInsertWrapper;
+import project.suhbuway.wrapper.OrderInsertWrapper;
 
 /**
  * 사이트 주문하기 과정에서 필요한 서비스

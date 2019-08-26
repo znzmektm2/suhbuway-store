@@ -77,5 +77,4 @@ public class HomeController {
     	mv.setViewName("store/salesList");
     	return mv;
     }
-
 }
