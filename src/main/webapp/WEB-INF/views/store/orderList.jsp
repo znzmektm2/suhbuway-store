@@ -7,110 +7,108 @@
 <head>
 <meta charset="UTF-8">
 <title>주문List</title>
+<style>
+.orders .content{padding:100px 0;}
+.tableWrap {overflow:hidden;margin:-20px;}
+.tableWrap .board_list_wrapper{position:relative;float:left;width:50%;padding:10px;box-sizing:border-box;}
+#DetailMenu{border-left:1px solid #ddd; }
+#DetailMenu th{height: 20px;}
+#DetailMenu th{width: 20%;}
+</style>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){ 
+		// 세부 주문내역 hide show
+		
+		
+		// 전체 주문내역 ajax append
+		
+		// 세부 주문내역 ajax append
 	
 	});
 </script>
 </head>
 <body>
-<h1>주문리스트</h1>
-<div class="contentWrap">
-	<div class="bg_type01" id="container">
-		<!-- sub content s -->
-		<div id="content">
-			<div class="inquiry_wrapper">
-				<h2 class="subTitle">매장 주문리스트</h2>
-				<div class="content">
-					<h3 class="h_title">정보입력</h3>
-					<div class="board_write_wrapper">
-						<p class="rt_note">필수입력사항<span class="ess"></span></p>
-						<table>
-							<caption>매장 회원가입 테이블</caption>
-							<colgroup>
-								<col width="130px">
-								<col width="*">
-							</colgroup>
-							<tbody>
-								<tr>
-									<th>주문번호</th>
-									<th>총 가격</th>
-									<th>주문 상황</th>
-								</tr>
-							
-							
-								<tr>
-									<th scope="col">아이디<span class="ess"></span></th>
-									<td>
-										<span class="form_text" style="width:100%">
-											<input maxlength="20" name="storeId" id="storeId" placeholder="아이디를 입력해주세요" type="text" >
+	<div class="orders"> 
+		<div class="content" >
+			<h3 class="h_title"> 판교점</h3>
+			<div class="tableWrap">
+				<div class="board_list_wrapper step1">
+					<table>
+						<thead>
+							<tr>
+								<th scope="col">주문번호</th>
+								<th scope="col">주문메뉴</th>
+								<th scope="col">결제금액</th>
+								<th scope="col">주문상태</th>
+							</tr>
+						</thead>
+						<tbody>
+						<c:choose>
+							<c:when test="${list==null}">
+								<td colspan="9">주문내역이 존재하지 않습니다.</td>
+							</c:when>
+							<c:when test="${list!=null}">
+								<th scope="col">주문번호</th>
+								<th scope="col">
+									<span class="menuImg">
+										<img alt="쉬림프" src="${pageContext.request.contextPath}/resources/images/menu/sandwich/sandwich_pm10.jpg"><br>
+											에그마요 15cm 외
 										</span>
-										<input type="button" name="idCheck" id="idCheck" value="중복확인"><span id="idcheckspan"></span>
-									</td>
-								</tr>
-								<tr>
-									<th scope="col">비밀번호<span class="ess"></span></th>
-									<td>
-										<span class="form_text" style="width:100%">
-											<input maxlength="16" name="storePassword" id="storePassword" placeholder="비밀번호를 입력해주세요" type="password"  >
-										</span>
-									</td>
-								</tr>
-								<tr>
-									<th scope="col">비밀번호 확인<span class="ess"></span></th>
-									<td>
-										<span class="form_text" style="width:100%">
-											<input maxlength="16" name="checkedPassword" id="checkedPassword" placeholder="비밀번호를 확인해주세요"  type="password" >
-										</span>
-										<span style="font-size:13px;" id="pwdCheck"></span>
-									</td>
-								</tr>
-								<tr>
-									<th scope="col">매장이름<span class="ess"></span></th>
-									<td>
-										<span class="form_text" style="width:100%">
-											<input maxlength="10" name="storeName" id="storeName" placeholder="매장이름을 입력해주세요" type="text" >
-										</span>
-									</td>
-								</tr>
-								<tr>
-									<th scope="col">매장주소<span class="ess"></span></th>
-									<td>
-										<span class="form_text" style="width:100%">
-											<input maxlength="10" name="storeAddress" id="storeAddress" placeholder="매장주소를 입력해주세요" type="text" >
-										</span>
-									</td>
-								</tr>
-								<tr>
-									<th scope="col">매장번호<span class="ess"></span></th>
-									<td>
-										<span class="form_text" style="width:100%">
-											<input maxlength="15" name="storePhone" id="storePhone" placeholder="매장번호를 입력해주세요" type="text" >
-										</span>
-									</td>
-								</tr>
-								<tr>
-									<th scope="col">점주<span class="ess"></span></th>
-									<td>
-										<span class="form_text" style="width:100%">
-											<input maxlength="15" name="storeOwner" id="storeOwner" placeholder="점주를 입력해주세요" type="text" >
-										</span>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<div class="btns_wrapper">
-						<a class="btn bgc_white" href="#"  style="width:126px;"><span>취소</span></a>
-						<a class="btn bgc_point i_reg" href="#" style="width:170px;"><span>등록하기</span></a>
-					</div>
+									</th>
+								<th scope="col">￦  7,000</th>
+								<th scope="col">주문접수</th>
+							</c:when>
+						</c:choose>
+						</tbody>
+					</table>
 				</div>
-			<!--  -->
+				
+				
+				<div class="board_list_wrapper step1" id="DetailMenu">
+					<table>
+						<tbody>
+							<tr>
+								<th scope="col">주문번호</th>
+								<td colspan="3"></td>
+							</tr>
+							<tr>
+								<th scope="col">주문ID</th>
+								<td colspan="3"></td>
+							</tr>
+							<tr>
+								<th scope="col">주문메뉴</th>
+								<td colspan="3"></td>
+							</tr>
+							<!-- ========== -->
+							<tr>
+								<th scope="col">빵길이</th>
+								<td colspan="3"></td>
+							</tr>
+							<tr>
+								<th scope="col">빵종류</th>
+								<td colspan="3"></td>
+							</tr>
+							<tr>
+								<th scope="col">야채</th>
+								<td colspan="3"></td>
+							</tr>
+							<tr>
+								<th scope="col">소스</th>
+								<td colspan="3"></td>
+							</tr>
+							<tr>
+								<th scope="col">가격</th>
+								<td colspan="3">￦  7,000</td>
+							</tr>
+						
+						
+						</tbody>
+					</table>
+				</div>
 			</div>
+			
 		</div>
-		<!--// sub content e -->
 	</div>
-</div>
 </body>
 </html>
