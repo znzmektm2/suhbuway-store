@@ -50,7 +50,7 @@ public class OrderServiceImpl implements OrderService {
 			// 주문 기본 정보 넣기 //
 			wrapper.setOrderId(orderList.getOrderId());
 			wrapper.setUserId(orderList.getUserId());
-			wrapper.setStore(storeDAO.selectStoreById(orderList.getStoreId()));
+			wrapper.setStore(storeDAO.selectStoreById2(orderList.getStoreId()));
 			wrapper.setTotal(orderList.getTotal());
 			wrapper.setOrderState(orderList.getOrderState());
 			wrapper.setRegdate(orderList.getRegdate());

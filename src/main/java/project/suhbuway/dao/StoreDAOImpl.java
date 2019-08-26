@@ -38,6 +38,11 @@ public class StoreDAOImpl implements StoreDAO {
 		return session.selectOne("storeMapper.selectStoreById",id);
 	}
 	
+	public Store selectStoreById2(String id) {
+		Store result = session.selectOne("storeMapper.selectStoreById",id);
+		result.setStorePassword(""); // 비밀번호는 삭제함 -_-.
+		return result;
+	}
 	/**
 	 * ID중복체크
 	 */

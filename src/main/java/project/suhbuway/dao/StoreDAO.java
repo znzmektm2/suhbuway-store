@@ -22,10 +22,15 @@ public interface StoreDAO {
 	List<Store> selectAll();
 
 	/**
-	 * ID에 해당하는 회원정보 검색
+	 * ID에 해당하는 회원정보 검색??????? 스토어인데????
 	 * */
 	Store selectStoreById(String id);
-
+	
+	/**
+	 * StoreId로 검색 비밀번호 삭제
+	 */
+	public Store selectStoreById2(String id); 
+	
 	/**
 	 * 회원정보 수정
 	 */
