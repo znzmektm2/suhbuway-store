@@ -95,5 +95,4 @@ public class StoreServiceImpl implements StoreService {
 		
 		return storeDAO.storeUpdate(store);
 	}
-
 }
