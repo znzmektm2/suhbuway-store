@@ -27,6 +27,24 @@
 		</collection>
 	</resultMap>
 
+	<!-- 매장 아이디로 오더리스트 불러옴 -->
+	<select id="selectOrderListForStore" parameterType="string" resultMap="orderListMap">
+		SELECT
+		<include refid="orderListColumns" />
+		,ITEM_ID,PRODUCT_ID,BREAD_TYPE,VEGGIES,SOURCE,ATTACH
+		FROM ORDER_LIST JOIN ORDER_ITEM USING(ORDER_ID)
+		<if test="_parameter!= null">
+			WHERE STORE_ID=#{_parameter}
+		</if>
+		ORDER BY REGDATE DESC, ATTACH
+	</select>
+
+
+
+	<!-- 이하 타 프로젝트에서 카피해옴  -->
+
+
+
 	<select id="selectOrderList" parameterType="string" resultMap="orderListMap">
 		SELECT
 		<include refid="orderListColumns" />
@@ -62,6 +80,8 @@
 	<select id="getLastItemId" resultType="_int">
 		SELECT MAX(ITEM_ID) FROM ORDER_ITEM
 	</select>
+	
+	
 </mapper>
 
 <!-- List<OrderItem> orderItems; -->

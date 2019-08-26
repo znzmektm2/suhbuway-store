@@ -8,10 +8,12 @@ import project.suhbuway.dto.OrderList;
 public interface OrderDAO {
 
 	/**
-	 * 유저별 주문 리스트들을 불러오는 메서드
+	 * 매장별 주문 리스트들을 불러오는 메서드
 	 */
-	public List<OrderList> selectOrderListsByUser(String userId);
+	public List<OrderList> selectOrderListByStore(String userId);
 
+	
+	///////////////////////////////////////// 이하 밑에서 카피해옴 /////////////////////////////////////
 	/**
 	 * DB에 주문을 넣기위한 메소드
 	 */

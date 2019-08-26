@@ -16,10 +16,12 @@ public class OrderDAOImpl implements OrderDAO {
 	SqlSession session;
 
 	@Override
-	public List<OrderList> selectOrderListsByUser(String userId) {
-		List<OrderList> list = session.selectList("orderMapper.selectOrderList", userId);
+	public List<OrderList> selectOrderListByStore(String storeId) {
+		List<OrderList> list = session.selectList("orderMapper.selectOrderListForStore", storeId);
 		return list;
 	}
+	
+	///////////////////////////////////////// 이하 밑에서 카피해옴 /////////////////////////////////////
 	
 	@Override
 	public int insertOrder(OrderList orderList) {
