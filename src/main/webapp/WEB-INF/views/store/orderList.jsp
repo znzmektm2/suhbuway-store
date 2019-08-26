@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,22 +16,12 @@
 #DetailMenu th{width: 20%;}
 </style>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.4.1.min.js"></script>
-<script type="text/javascript">
-	$(function(){ 
-		// 세부 주문내역 hide show
-		
-		
-		// 전체 주문내역 ajax append
-		
-		// 세부 주문내역 ajax append
-	
-	});
-</script>
+
 </head>
 <body>
 	<div class="orders"> 
 		<div class="content" >
-			<h3 class="h_title"> 판교점</h3>
+			<h3 class="h_title"> ${store.storeName }</h3>
 			<div class="tableWrap">
 				<div class="board_list_wrapper step1">
 					<table>
@@ -48,17 +38,9 @@
 							<c:when test="${list==null}">
 								<td colspan="9">주문내역이 존재하지 않습니다.</td>
 							</c:when>
-							<c:when test="${list!=null}">
-								<th scope="col">주문번호</th>
-								<th scope="col">
-									<span class="menuImg">
-										<img alt="쉬림프" src="${pageContext.request.contextPath}/resources/images/menu/sandwich/sandwich_pm10.jpg"><br>
-											에그마요 15cm 외
-										</span>
-									</th>
-								<th scope="col">￦  7,000</th>
-								<th scope="col">주문접수</th>
-							</c:when>
+							<c:otherwise>
+							
+							</c:otherwise>
 						</c:choose>
 						</tbody>
 					</table>
@@ -101,14 +83,27 @@
 								<th scope="col">가격</th>
 								<td colspan="3">￦  7,000</td>
 							</tr>
-						
-						
 						</tbody>
 					</table>
 				</div>
 			</div>
-			
 		</div>
 	</div>
 </body>
+<script>
+$(function(){ 
+	$.ajax({
+		url:'${pageContext.request.contextPath}/getOrderList',
+		type:'POST',
+		dataType: 'json',
+		data:'${_csrf.parameterName}=${_csrf.token}&storeId=${store.storeId}',
+		success: function(data) {
+			console.log(data)
+		},
+		error: function(error) {
+			console.log('따란...')
+		}
+	});
+});
+</script>
 </html>
