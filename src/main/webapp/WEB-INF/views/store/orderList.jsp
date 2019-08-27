@@ -36,6 +36,9 @@
 #DetailMenu th {
 	width: 20%;
 }
+
+.tab-1{display:inline-block; width:40px;}
+.tab-2{display:inline-block; width:100px;}
 </style>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.4.1.min.js"></script>
 
@@ -45,14 +48,14 @@
 		<div class="content">
 			<h3 class="h_title">${store.storeName }</h3>
 			<div class="tableWrap">
-				<div class="board_list_wrapper step1" style="height:740px;overflow:auto">
+				<div class="board_list_wrapper step1" style="height: 740px; overflow: auto">
 					<table>
 						<thead>
 							<tr>
 								<th scope="col">주문번호</th>
-								<th scope="col">고객명</th>
+								<th scope="col">고객아이디</th>
 								<th scope="col">결제금액</th>
-								<th scope="col">주문상태</th>
+								<th scope="col">주문일자</th>
 							</tr>
 						</thead>
 						<tbody class="orderlist">
@@ -68,24 +71,24 @@
 					</table>
 				</div>
 
-				<div class="board_list_wrapper step1" style="height:740px;" id="DetailMenu">
+				<div class="board_list_wrapper step1" style="height: 740px;" id="DetailMenu">
 					<table>
 						<tbody>
 							<tr>
 								<th scope="col">주문번호</th>
-								<td colspan="3"></td>
+								<td class="itemDisplay showOrderId" colspan="3"></td>
 							</tr>
 							<tr>
-								<th scope="col">주문ID</th>
-								<td colspan="3"></td>
+								<th scope="col">고객 아이디</th>
+								<td class="itemDisplay showUserId" colspan="3"></td>
 							</tr>
-							<tr style="height:460px;overflow:auto">
+							<tr style="height: 460px; overflow: auto">
 								<th scope="col">주문메뉴</th>
-								<td colspan="3"></td>
+								<td class="itemDisplay showOrderContent" colspan="3" style="vertical-align:top;text-align:left;"></td>
 							</tr>
 							<tr>
 								<th scope="col">가격</th>
-								<td colspan="3">￦ 7,000</td>
+								<td class="itemDisplay showPrice" colspan="3"></td>
 							</tr>
 						</tbody>
 					</table>
@@ -113,15 +116,45 @@ $(function() {
 						
 						orderList();
 					} else {
-						console.log('같아 같다고.')
+						console.log('같아 같다고.') // 이거 삭제하세요
 					}
 			},
 			error : function(error) {
 				console.log('따란...')
 			}
 		});
-	}, 1000);
+	}, 3000);
+	
+
 });
+
+// 리스트 클릭시 주문 내용 출력
+function orderClick() {
+	$('.showList').on('click',function() {
+		$('.itemDisplay').empty();
+		var item = list.find(item => item.orderId == $(this).text())
+		console.log(item);
+		$('.showOrderId').text(item.orderId);
+		$('.showUserId').text(item.userId);
+		$('.showPrice').text(item.total);
+		
+		var order = ""
+		$.each(item.items, function(index, item){
+			order += index + ' : ' + item.mainMenu.category + ' ' + item.mainMenu.name + ' '
+			if(item.mainMenu.length != undefined)
+				order += item.mainMenu.length
+			order += '<br><span class="tab-1"></span>뺄 야채 : ' + item.veggies + '<br>';
+			order += '<span class="tab-1"></span>소 스  : ' + item.source + '<br>'; 
+			order += '<span class="tab-1"></span>추가사항 : <br>' ;
+			$.each(item.subMenu, function(index, item) {
+				order += '<span class="tab-2"></span>' + item.name + '<br>';
+			})
+			order += '<br>'
+		})
+		
+		$('.showOrderContent').html(order);
+	})
+}
 
 // orderList전체를 받아오는 함수
 function orderList() {
@@ -136,13 +169,13 @@ function orderList() {
 			console.log(list.length)
 			sessionStorage.setItem('listSize', list.length);
 			$.each(data, function(index, item) {
-				var tr = '<tr data-val="'+item.orderId+'"><td>'
-					+ item.orderId + '</span></td><td>'
+				var tr = '<tr><td class="showList">' + item.orderId + '</td><td>'
 					+ item.userId + '</td><td>' + item.total
-					+ "</td><td>" + item.orderState
+					+ "</td><td>" + item.regdate
 					+ '</td></tr>'
 				$('.orderlist').append(tr);
 			})
+			orderClick();
 		},
 		error : function(error) {
 			console.log('따란...')
