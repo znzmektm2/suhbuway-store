@@ -12,11 +12,14 @@ import project.suhbuway.wrapper.OrderListWrapper;
 public interface OrderService {
 
 	/**
-	 * 유저별 주문 리스트들을 불러오는 메서드
+	 * 매장별 주문 리스트들을 불러오는 메서드
 	 */
 	public List<OrderListWrapper> selectOrderListByStore(String storeId);
 	
-	
+	/**
+	 * 매장 주문 리스트의 갯수를 구해온다.
+	 */
+	public int getOrderListNumber(String storeId);
 	
 	/**
 	 * 주문을 저장한다.

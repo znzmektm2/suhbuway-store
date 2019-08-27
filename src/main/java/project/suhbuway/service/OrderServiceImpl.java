@@ -89,61 +89,8 @@ public class OrderServiceImpl implements OrderService {
 		return orderLists;
 	}
 
-	/**
-	 * 주문을 DB로 넣는 작업
-	 */
-//	@Override
-//	@Transactional
-//	public String insertOrder(OrderInsertWrapper[] newOrders, Store store, String userId) {
-//
-//		/* 주문 아이디를 만들기 */
-//		String orderId = new SimpleDateFormat("yyMMddhhmmssSSS").format(new Date());
-//		int lastItem = orderDAO.getLastItemId();
-//
-//		List<OrderItem> list = new ArrayList<OrderItem>();
-//
-//		/* orderList 생성 및 기본 데이터 입력 */
-//		OrderList orderList = new OrderList();
-//		orderList.setOrderId(orderId);
-//		orderList.setUserId("test1");
-//		orderList.setStoreId(store.getStoreId());
-//
-//		int total = 0; // 주문 총계 계산용
-//
-//		/* wrapper 에서 orderItem으로 전환하여 list에 저장 */
-//		for (OrderInsertWrapper orders : newOrders) {
-//			System.out.println(orders);
-//			OrderItem main = new OrderItem();
-//			main.setItemId(++lastItem);
-//			main.setOrderId(orderId);
-//			main.setProductId(orders.getProduct().getProductId());
-//			main.setBreadType(orders.getBreadType());
-//			main.setVeggies(String.join(",", orders.getVeggies()));
-//			main.setSource(String.join(",", orders.getSource()));
-//			main.setLength(orders.getLength());
-//			total += orders.getPrice();
-//
-//			list.add(main);
-//			for (Product subItem : orders.getSubMenu()) {
-//				OrderItem sub = new OrderItem();
-//				sub.setItemId(++lastItem);
-//				sub.setOrderId(orderId);
-//				sub.setProductId(subItem.getProductId());
-//				sub.setAttach(main.getItemId());
-//
-//				list.add(sub);
-//			}
-//		}
-//		orderList.setTotal(total);
-//
-//		/* db에 저장하는 작업 */
-//		int result = orderDAO.insertOrder(orderList);
-//
-//		for (OrderItem item : list) {
-//			result = orderDAO.insertItem(item);
-//		}
-//
-//		/* 주문번호 반환 */
-//		return orderList.getOrderId();
-//	}
+	@Override
+	public int getOrderListNumber(String storeId) {
+		return orderDAO.getOrderListNumber(storeId);
+	}
 }

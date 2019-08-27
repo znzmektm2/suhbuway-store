@@ -21,6 +21,11 @@ public class OrderDAOImpl implements OrderDAO {
 		return list;
 	}
 	
+	@Override
+	public int getOrderListNumber(String storeId) {
+		return  session.selectOne("orderMapper.getOrderListNumber", storeId);
+	}
+	
 	///////////////////////////////////////// 이하 밑에서 카피해옴 /////////////////////////////////////
 	
 	@Override

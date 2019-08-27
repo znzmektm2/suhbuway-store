@@ -77,30 +77,12 @@ public class StoreController {
 		return list;
 	}
 	
-	
 	/**
-	 * 회원정보 수정
+	 * 매장별 주문 갯수 정보 뽑아오기 ajax 
 	 */
-//	@RequestMapping("/user/userUpdate")
-//	public String userUpdate( User user ) {
-//		int result = service.userUpdate(user);
-//		String url="myPage/infol";
-//		if( result==0 ) {
-//			url="err/updateFail";
-//		}
-//		return "redirect:/myPage/info?msg=ok";
-//	}
-	
-	/**
-	 * 회원탈퇴
-	 */
-//	@RequestMapping("/user/userDeleteAjax")
-//	@ResponseBody
-//	public String userDeleteAjax( String userId ) {
-//		System.out.println("회원정보 ID: " + userId );
-//		System.out.println("삭제할 회원 정보");
-//		//String result = service.userDelete(userId);
-//		//System.out.println("삭제 결과 : " + result );
-//		return "";
-//	}
+	@RequestMapping("/getOrderListNumber")
+	@ResponseBody
+	public int orderListNumber(String storeId) {
+		return orderService.getOrderListNumber(storeId);
+	}
 }

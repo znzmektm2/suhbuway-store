@@ -11,7 +11,11 @@ public interface OrderDAO {
 	 * 매장별 주문 리스트들을 불러오는 메서드
 	 */
 	public List<OrderList> selectOrderListByStore(String userId);
-
+	
+	/**
+	 * 매장 주문리스트의 숫자를 불러온다.
+	 */
+	public int getOrderListNumber(String userId);
 	
 	///////////////////////////////////////// 이하 밑에서 카피해옴 /////////////////////////////////////
 	/**

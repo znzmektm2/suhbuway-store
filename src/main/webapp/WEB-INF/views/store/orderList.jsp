@@ -45,7 +45,7 @@
 		<div class="content">
 			<h3 class="h_title">${store.storeName }</h3>
 			<div class="tableWrap">
-				<div class="board_list_wrapper step1">
+				<div class="board_list_wrapper step1" style="height:740px;overflow:auto">
 					<table>
 						<thead>
 							<tr>
@@ -68,8 +68,7 @@
 					</table>
 				</div>
 
-
-				<div class="board_list_wrapper step1" id="DetailMenu">
+				<div class="board_list_wrapper step1" style="height:740px;" id="DetailMenu">
 					<table>
 						<tbody>
 							<tr>
@@ -80,25 +79,8 @@
 								<th scope="col">주문ID</th>
 								<td colspan="3"></td>
 							</tr>
-							<tr>
+							<tr style="height:460px;overflow:auto">
 								<th scope="col">주문메뉴</th>
-								<td colspan="3"></td>
-							</tr>
-							<!-- ========== -->
-							<tr>
-								<th scope="col">빵길이</th>
-								<td colspan="3"></td>
-							</tr>
-							<tr>
-								<th scope="col">빵종류</th>
-								<td colspan="3"></td>
-							</tr>
-							<tr>
-								<th scope="col">야채</th>
-								<td colspan="3"></td>
-							</tr>
-							<tr>
-								<th scope="col">소스</th>
 								<td colspan="3"></td>
 							</tr>
 							<tr>
@@ -114,27 +96,58 @@
 
 </body>
 <script>
-	$(function() {
+var list;
+$(function() {
+	orderList();
+	playAlert = setInterval(function() {
 		$.ajax({
-			url : '${pageContext.request.contextPath}/getOrderList',
+			url : '${pageContext.request.contextPath}/getOrderListNumber',
 			type : 'POST',
-			dataType : 'json',
+			dataType : 'text',
 			data : '${_csrf.parameterName}=${_csrf.token}&storeId=${store.storeId}',
 			success : function(data) {
-				console.log(data)
-				$.each(data, function(index, item) {
-					var tr = '<tr data-val="'+item.orderId+'"><td>'
-						+ item.orderId + '</span></td><td>'
-						+ item.userId + '</td><td>' + item.total
-						+ "</td><td>" + item.orderState
-						+ '</td></tr>'
-					$('.orderlist').empty().append(tr);
-				})
+					//console.log(data);
+					//var past = sessionStorage.getItem('listSize');
+					if(data > sessionStorage.getItem('listSize')){
+						///---- 여기 주문이 들어왔을때 할 작업 : 메세지 출력같은거 해주면 되요. ----////
+						
+						orderList();
+					} else {
+						console.log('같아 같다고.')
+					}
 			},
 			error : function(error) {
 				console.log('따란...')
 			}
 		});
+	}, 1000);
+});
+
+// orderList전체를 받아오는 함수
+function orderList() {
+	$.ajax({
+		url : '${pageContext.request.contextPath}/getOrderList',
+		type : 'POST',
+		dataType : 'json',
+		data : '${_csrf.parameterName}=${_csrf.token}&storeId=${store.storeId}',
+		success : function(data) {
+			list = data;
+			$('.orderlist').empty()
+			console.log(list.length)
+			sessionStorage.setItem('listSize', list.length);
+			$.each(data, function(index, item) {
+				var tr = '<tr data-val="'+item.orderId+'"><td>'
+					+ item.orderId + '</span></td><td>'
+					+ item.userId + '</td><td>' + item.total
+					+ "</td><td>" + item.orderState
+					+ '</td></tr>'
+				$('.orderlist').append(tr);
+			})
+		},
+		error : function(error) {
+			console.log('따란...')
+		}
 	});
+}
 </script>
 </html>
