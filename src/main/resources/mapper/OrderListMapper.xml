@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="orderListMapper">
+
+<select id="selectByStoreSales" resultType="orderList" parameterType="map">
+select store_id,total,regdate from order_list 
+<where>
+regdate &lt;= TO_DATE(#{min2},'YYYY/MM/DD') AND
+regdate &gt;= TO_DATE(#{max},'YYYY/MM/DD') <!-- AND
+store_id=#{storeId} -->
+</where>
+</select>
+
+</mapper>	

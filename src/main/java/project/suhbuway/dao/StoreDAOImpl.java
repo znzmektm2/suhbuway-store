@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import project.suhbuway.dto.OrderList;
 import project.suhbuway.dto.Store;
 
 @Repository
@@ -59,6 +60,14 @@ public class StoreDAOImpl implements StoreDAO {
 	@Override
 	public int storeUpdate(Store store) {
 		return session.update("storeMapper.updateStore",store);
+	}
+	@Override
+	public List<OrderList> selectByStoreSales(String max, String min2,String storeId) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("max", max);
+		map.put("min2", min2);
+		map.put("storeId", storeId);
+		return session.selectList("orderListMapper.selectByStoreSales", map);
 	}
 
 }

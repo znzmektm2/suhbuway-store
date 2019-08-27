@@ -2,6 +2,7 @@ package project.suhbuway.dao;
 
 import java.util.List;
 
+import project.suhbuway.dto.OrderList;
 import project.suhbuway.dto.Store;
 
 public interface StoreDAO {
@@ -36,8 +37,9 @@ public interface StoreDAO {
 	 */
 	int storeUpdate(Store store);
 	
-	/**
-	 * 매출액 조회 - 매장에 따른 Order table의 월별 매출액 조회
-	 */
+	/*
+	 * 날짜별 매장 매출 뽑기
+	 * */
+	List<OrderList> selectByStoreSales(String max,String min2,String storeId);
 	
 }
