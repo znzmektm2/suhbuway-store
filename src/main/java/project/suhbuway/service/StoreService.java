@@ -39,6 +39,6 @@ public interface StoreService {
 	/*
 	 * 날짜별 매장 매출 뽑기
 	 * */
-	int selectByStoreSales(String min);
+	int selectByStoreSales(String min,String storeId);
 	
 }

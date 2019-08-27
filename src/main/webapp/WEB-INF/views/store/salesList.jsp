@@ -9,15 +9,20 @@
 <script type="text/javascript">
 //셀렉트 박스 클릭시 이벤트발생
  function changeSelect(fis) {
-		var min=$(fis).val(); // 셀렉트박스 선택결과 값 가져오기
-		console.log(min);
+		var min; // 셀렉트박스 선택결과 값 가져오기
+		var params={
+				min:$(fis).val(),
+				"${_csrf.parameterName}":"${_csrf.token}",
+				storeId:"${store.storeId}"
+		}
 		$.ajax({
 		      url:"${pageContext.request.contextPath}/selectSales",
 		      type:"post",
 		      dataType: "json",
-		      data:"${_csrf.parameterName}=${_csrf.token}&min="+min,
+		      data:params,
 		      success:function(result){
-		         alert(result);
+		         $(".orderPrice").empty();
+		         $(".orderPrice").append(result);
 		      },
 		      error: function(err){
 		         console.log("오류발생 : " + err);
@@ -58,10 +63,11 @@
 				<td><span>${store.storeName}</span></td>
 				<td><span>${store.storeAddress}</span></td>
 				<td><span>${store.storeOwner}</span></td>
-				<td><span class="orderPrice">0</span></td>
+				<td><span class="orderPrice"></span></td>
 			</tr>
 		</tbody>
 	</table>
 </div>
+
 </body>
 </html>

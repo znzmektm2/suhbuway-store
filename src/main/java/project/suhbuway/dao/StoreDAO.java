@@ -35,6 +35,6 @@ public interface StoreDAO {
 	/*
 	 * 날짜별 매장 매출 뽑기
 	 * */
-	List<OrderList> selectByStoreSales(String max,String min2);
+	List<OrderList> selectByStoreSales(String max,String min2,String storeId);
 	
 }

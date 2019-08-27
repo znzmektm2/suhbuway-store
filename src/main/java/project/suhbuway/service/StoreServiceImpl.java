@@ -98,16 +98,13 @@ public class StoreServiceImpl implements StoreService {
 	}
 
 	@Override
-	public int selectByStoreSales(String min) {
+	public int selectByStoreSales(String min, String storeId) {
 		int total=0;
 		String max = min+"/31";
 		String min2 = min+"/01";
-		List<OrderList> list =storeDAO.selectByStoreSales(min2,max);
-		System.out.println(list);
-		System.out.println(list.size());
-		for(int i=0;i>list.size();i++) {
-			total=+list.get(i).getTotal();
-			System.out.println(total);
+		List<OrderList> list =storeDAO.selectByStoreSales(min2,max,storeId);
+		for(int i=0;i<list.size();i++) {
+			total+=list.get(i).getTotal();
 		}
 		return total;
 	}

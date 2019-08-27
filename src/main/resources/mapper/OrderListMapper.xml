@@ -5,8 +5,9 @@
 <select id="selectByStoreSales" resultType="orderList" parameterType="map">
 select store_id,total,regdate from order_list 
 <where>
-regdate &gt;= TO_DATE(#{min2},'YYYY/MM/DD') AND
-regdate &lt;= TO_DATE(#{max},'YYYY/MM/DD')
+regdate &lt;= TO_DATE(#{min2},'YYYY/MM/DD') AND
+regdate &gt;= TO_DATE(#{max},'YYYY/MM/DD') <!-- AND
+store_id=#{storeId} -->
 </where>
 </select>
 

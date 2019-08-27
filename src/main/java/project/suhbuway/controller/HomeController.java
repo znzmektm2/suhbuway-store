@@ -88,8 +88,8 @@ public class HomeController {
      * */
 	@ResponseBody
     @RequestMapping("/selectSales")
-	public int selectByStoreSales(String min) {
-    	return storeService.selectByStoreSales(min);
+	public int selectByStoreSales(String min,String storeId) {
+    	return storeService.selectByStoreSales(min,storeId);
     }
 
 }

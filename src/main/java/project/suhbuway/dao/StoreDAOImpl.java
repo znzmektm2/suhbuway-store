@@ -57,10 +57,11 @@ public class StoreDAOImpl implements StoreDAO {
 		return session.update("storeMapper.updateStore",store);
 	}
 	@Override
-	public List<OrderList> selectByStoreSales(String max, String min2) {
+	public List<OrderList> selectByStoreSales(String max, String min2,String storeId) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("max", max);
 		map.put("min2", min2);
+		map.put("storeId", storeId);
 		return session.selectList("orderListMapper.selectByStoreSales", map);
 	}
 
