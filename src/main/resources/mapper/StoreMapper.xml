@@ -37,5 +37,10 @@
 	select count(*) from store where store_ID=#{_parameter} 
 </select>
 
+<!-- storeId를 통해 매장정보 검색 -->
+<select id="selectByStoreId" resultType="store">
+	select * from store
+</select>
+
 
 </mapper>	

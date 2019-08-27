@@ -2,9 +2,13 @@ package project.suhbuway.controller;
 
 import java.security.Principal;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import project.suhbuway.dto.Store;
@@ -58,7 +62,7 @@ public class HomeController {
      * 매출액 확인
      */
     @RequestMapping("/store/salesList")
-    public ModelAndView salesList( Principal principal ) {
+    public ModelAndView salesList( Principal principal) {
     	ModelAndView mv = new ModelAndView();
     	
     	// 시큐리티 로그인 매장 id
@@ -73,9 +77,19 @@ public class HomeController {
         	
         	Store dbstore = storeService.selectStoreById(storeId);
         	mv.addObject("store", dbstore );
+        	
     	}
     	mv.setViewName("store/salesList");
     	return mv;
+    }
+    
+    /*
+     * 매출액 검색
+     * */
+	@ResponseBody
+    @RequestMapping("/selectSales")
+	public int selectByStoreSales(String min) {
+    	return storeService.selectByStoreSales(min);
     }
 
 }

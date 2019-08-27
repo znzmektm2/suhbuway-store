@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import project.suhbuway.dao.StoreDAO;
+import project.suhbuway.dto.OrderList;
 import project.suhbuway.dto.Store;
 
 @Service
@@ -94,6 +95,21 @@ public class StoreServiceImpl implements StoreService {
 		}
 		
 		return storeDAO.storeUpdate(store);
+	}
+
+	@Override
+	public int selectByStoreSales(String min) {
+		int total=0;
+		String max = min+"/31";
+		String min2 = min+"/01";
+		List<OrderList> list =storeDAO.selectByStoreSales(min2,max);
+		System.out.println(list);
+		System.out.println(list.size());
+		for(int i=0;i>list.size();i++) {
+			total=+list.get(i).getTotal();
+			System.out.println(total);
+		}
+		return total;
 	}
 
 }

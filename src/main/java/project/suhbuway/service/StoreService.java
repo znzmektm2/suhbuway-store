@@ -36,8 +36,9 @@ public interface StoreService {
 	 */
 	int userUpdate(Store user);
 	
-	/**
-	 * 매출액 조회 - 매장에 따른 Order table의 월별 매출액 조회
-	 */
+	/*
+	 * 날짜별 매장 매출 뽑기
+	 * */
+	int selectByStoreSales(String min);
 	
 }
