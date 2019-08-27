@@ -32,7 +32,7 @@
 	<div class="contentWrap">
 		<div class="bg_type01 login" id="container">
 			<div class="titWrap">
-				<strong class="tit"><span>특별한 날</span>엔 써브웨이와 함께!</strong>
+				<strong class="tit"><span>특별한 날</span>엔 서부웨이와 함께!</strong>
 				<h2>환경을 생각하는 서부웨이에 오신것을 환영합니다.</h2>
 			</div>
 			<!-- sub content s -->

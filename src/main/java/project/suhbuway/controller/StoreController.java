@@ -1,5 +1,7 @@
 package project.suhbuway.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +11,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import project.suhbuway.dto.Store;
+import project.suhbuway.service.OrderService;
 import project.suhbuway.service.StoreService;
+import project.suhbuway.wrapper.OrderListWrapper;
 
 /**
  * 매장
@@ -18,6 +22,8 @@ import project.suhbuway.service.StoreService;
 public class StoreController {
 	@Autowired
 	private StoreService service;
+	@Autowired
+	private OrderService orderService;
 
 	/**
 	 *  로그인폼
@@ -58,7 +64,20 @@ public class StoreController {
 		service.joinStore(store);
 		return "index";  
 	}
-
+	
+	/**
+	 * 리스트 정보 뽑아오기 ajax
+	 */
+	@RequestMapping("/getOrderList")
+	@ResponseBody
+	public List<OrderListWrapper> orderList(String storeId) {
+		List<OrderListWrapper> list = orderService.selectOrderListByStore(storeId);
+		for(OrderListWrapper item : list)
+			System.out.println(item);
+		return list;
+	}
+	
+	
 	/**
 	 * 회원정보 수정
 	 */
