@@ -96,12 +96,15 @@
 			</div>
 		</div>
 	</div>
+	
 
 </body>
 <script>
 var list;
 $(function() {
 	orderList();
+	var obj = new Audio('${pageContext.request.contextPath}/resources/audio/order.m4a');
+	
 	playAlert = setInterval(function() {
 		$.ajax({
 			url : '${pageContext.request.contextPath}/getOrderListNumber',
@@ -113,8 +116,8 @@ $(function() {
 					//var past = sessionStorage.getItem('listSize');
 					if(data > sessionStorage.getItem('listSize')){
 						///---- 여기 주문이 들어왔을때 할 작업 : 메세지 출력같은거 해주면 되요. ----////
-						
 						orderList();
+						obj.play();
 					} else {
 						console.log('같아 같다고.') // 이거 삭제하세요
 					}
@@ -123,7 +126,7 @@ $(function() {
 				console.log('따란...')
 			}
 		});
-	}, 3000);
+	}, 3000);  
 	
 
 });

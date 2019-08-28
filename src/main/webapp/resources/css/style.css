@@ -770,7 +770,7 @@ width:12px;height:12px;background: url(../images/ico_star_big_g.png) no-repeat;b
  
 /* 주문내역 */
 .orders .board_list_wrapper.step1 table th{height: 45px;font-size: 16px;}
-.orders .board_list_wrapper.step1 table td{padding:10px;font-size:14px;}
+.orders .board_list_wrapper.step1 table td{height:50px;font-size:14px;}
 .board_list_wrapper.step1 table a.menuTit{background: none;font-size: 14px;}
 .board_list_wrapper.step1 table a.menuTit:hover{color:#aaa;}
 .myPage .orders .board_list_wrapper.step1 table span.state{font-size: 14px;}

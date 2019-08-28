@@ -28,9 +28,6 @@
 				<h2 class="subTitle" style="color: red">
 					인증이 완료되었습니다.					
 				</h2>
-				<audio controls="" autoplay="" style="display:block!important;opacity:0;">
-					<source src="${pageContext.request.contextPath}/resources/audio/order.m4a" type="audio/mp4" />
-				</audio>
 			</sec:authorize>
 		</sec:authorize>
 	</div>
